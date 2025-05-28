@@ -15,15 +15,15 @@ from astropy.io import fits
 from multiprocessing import Pool, cpu_count
 from sunpy.coordinates import propagate_with_solar_surface
 
-directory = {"/media/potato/solar/data/20240511/aia/0094/": "cutted/0094/",
-             "/media/potato/solar/data/20240511/aia/0131/": "cutted/0131/",
-             "/media/potato/solar/data/20240511/aia/0171/": "cutted/0171/",
-             "/media/potato/solar/data/20240511/aia/0193/": "cutted/0193/",
-             "/media/potato/solar/data/20240511/aia/0211/": "cutted/0211/",
-             "/media/potato/solar/data/20240511/aia/0304/": "cutted/0304/",
-             "/media/potato/solar/data/20240511/aia/0335/": "cutted/0335/",
-             "/media/potato/solar/data/20240511/aia/1600/": "cutted/1600/",
-             "/media/potato/solar/data/20240511/aia/1700/": "cutted/1700/"}
+directory = {"input_dir/": "cutted/0094/",
+             "input_dir/": "cutted/0131/",
+             "input_dir/": "cutted/0171/",
+             "input_dir/": "cutted/0193/",
+             "input_dir/": "cutted/0211/",
+             "input_dir/": "cutted/0304/",
+             "input_dir/": "cutted/0335/",
+             "input_dir/": "cutted/1600/",
+             "input_dir/": "cutted/1700/"}
 x0, y0 = 715, -370
 dx, dy = 150, 150
 
@@ -84,7 +84,7 @@ def cut_aia(args):
 
 def main():
     # prepare reference map
-    ref_path = "/media/potato/solar/data/20240511/aia/0335/aia.lev1_euv_12s.2024-05-11T105926Z.335.image_lev1.fits"
+    ref_path = "reference_file"
     ref_map = sunpy.map.Map(ref_path)
     pointing_table = get_pointing_table("JSOC", time_range=(ref_map.date - 12 * u.h, ref_map.date + 12 * u.h))
     ref_map_updated_pointing = update_pointing(ref_map, pointing_table=pointing_table)
